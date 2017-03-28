@@ -1,4 +1,3 @@
-
 /*
  * Low-level file I/O copy
  * No C-STD libary
@@ -10,25 +9,6 @@
 #include <stdlib.h>
 #define BUF 10000 // fixed size buffer == buffer overflow.
 #define DEBUG 1   // For debug builds.
-
-
-void create_file(char *fileName)
-{
-
-    int fd = open(fileName, O_WRONLY | O_CREAT, 0644);
-
-    if (fd < 0)
-    {
-        printf("Error number %d\n", errno);
-        perror("foo");
-        exit(1);
-    }
-    else
-    {
-        write(fd, "Hello World", 11);
-        close(fd);
-    }
-}
 
 
 /* 
@@ -73,8 +53,8 @@ void unbuffered_copy(char *argv[])
 int main(int argc, char *argv[])
 {
 
-    char *fName = "data.log";
-    create_file(fName);
+    //char *fName = "data.log";
+   // create_file(fName);
     unbuffered_copy(argv);
 
     return 0;
