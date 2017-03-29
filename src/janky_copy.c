@@ -5,8 +5,6 @@
 
 #include <fcntl.h> // File control
 #include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
 #define BUF 10000 // fixed size buffer == buffer overflow.
 #define DEBUG 1   // For debug builds.
 
@@ -25,20 +23,16 @@ void unbuffered_copy(char *argv[])
 
     int fin;
     int fout;
-    int fseek;
     int count;
     char buffer[BUF];
 
-    // Add exception handling and junk.
+    fin = open(argv[1], O_RDONLY);
+
     if (fin < 0 && DEBUG == 1)
     {
         printf("[DEBUG] Error %d\n", errno);
         perror("[Jankutils] Low I/O Copy");
         exit(1);
-    }
-    else
-    {
-        fin = open(argv[1], O_RDONLY);
     }
 
     // Open second argument to copy file to.
@@ -52,10 +46,6 @@ void unbuffered_copy(char *argv[])
 
 int main(int argc, char *argv[])
 {
-
-    //char *fName = "data.log";
-   // create_file(fName);
     unbuffered_copy(argv);
-
     return 0;
 }
